@@ -1,0 +1,3 @@
+[submodule "LffFramework"]
+	path = LffFramework
+	url = https://github.com/ctymtce/LffFramework.git
