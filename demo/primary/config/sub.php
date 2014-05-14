@@ -1,13 +1,53 @@
 <?php
+/**
+ * desc: 子·配置文件
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+*/
 
-$projectLoc = realpath(dirname(__FILE__).'/../..');
+$configGlobalArr = require_once(dirname(__FILE__).'/../../config/main.php');
 
-$configGlobalArr = require_once($projectLoc.'/config/main.php');
+//=========================子.公共常量=====================================//
+//=========================子·公共常量==================================end//
+
+
+//=========================子.公共变量=====================================//
+$sessionid          = 'primary'; // md5($CLIENTHOST.$BROWSERID.'primary');
+$INCLUDE_DIRS_SUB   = array(
+    PROJECTLOC.'/PHPExcel',
+);
+$INCLUDE_DIRS_ALL   = array_merge($INCLUDE_DIRS_MAIN, $INCLUDE_DIRS_SUB);
+//=========================子·公共变量==================================end//
+
+
+//=========================子·常用设置=====================================//
+//如果你需要子域需要和主域不共用session,你可以这样设置
+// echo ini_get('session.cookie_domain');
+/*
+$session_domain = 'subdomain'.$TOP_DOMAIN;
+ini_set('session.cookie_domain', $session_domain);
+$sessionid = 'subdomain'; // md5($CLIENTHOST.$BROWSERID.'subdomain');
+*/
+//=========================子.常用设置==================================end//
+
+
+//===============================自动加载==================================//
+CAutoLoad::AutoLoad($INCLUDE_DIRS_ALL);
+//==============================自动加载================================end//
+
+
 
 $configSubArr = array(
     'subApp' => 'primary',
     'ui' => 'blue',
     
+    // 'sessionid' => $sessionid,
+
     'nickmethods' => array(
     ),
     'routeAlias' => array(

@@ -2,7 +2,7 @@
 class KSite extends CControllerPrimary{
 
     
-    function actionDefault($viewFile=null)
+    function actionEntry($viewFile=null)
     {
         $this->display('index');
     }

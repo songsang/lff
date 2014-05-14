@@ -1,42 +1,61 @@
 <?php
+/**
+ * desc: 主·配置文件
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+*/
 
-$HTTPHOST   = $_SERVER['HTTP_HOST'];
-$ROOT       = $_SERVER['DOCUMENT_ROOT'];
-$CLIENTHOST = $_SERVER['REMOTE_ADDR']; //客户端地址
-$BROWSERID  = $_SERVER['REMOTE_ADDR']; //浏览器again
-$TOP_DOMAIN = substr($HTTPHOST,strpos($HTTPHOST,'.')); //顶级域名 //www.abc.com -> .abc.com
+//=========================主.公共常量=====================================//
+define('HTTPHOST',          $_SERVER['HTTP_HOST']);
+define('ROOT',              $_SERVER['DOCUMENT_ROOT']);
+define('CLIENTHOST',        $_SERVER['REMOTE_ADDR']);
+define('BROWSERID',         $_SERVER['REMOTE_ADDR']);
+define('TOP_DOMAIN',        substr(HTTPHOST,strpos(HTTPHOST,'.')));//www.abc.com -> .abc.com
+define('COOKIE_DOMAIN',     TOP_DOMAIN);//默认的cookie domain
+define('PROJECTLOC',        realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'));//工程目录
+//=========================主·公共常量==================================end//
 
-$COOKIE_DOMAIN = $TOP_DOMAIN; //默认的cookie domain
-ini_set('session.cookie_domain', $COOKIE_DOMAIN);
 
+//=========================主.公共变量=====================================//
+$sessionid          = 'primary'; // md5($CLIENTHOST.$BROWSERID.'primary');
+$INCLUDE_DIRS_MAIN  = array(
+    PROJECTLOC.'/extends',
+    PROJECTLOC.'/common',
+);
+//=========================主·公共变量==================================end//
+
+
+//=========================主·常用设置=====================================//
 // echo ini_get('session.cookie_domain');
- 
-$sessionid = 'primary'; // md5($CLIENTHOST.$BROWSERID.'primary');
+ini_set('session.cookie_domain', COOKIE_DOMAIN);
+//=========================主.常用设置==================================end//
 
-$PROJECTLOC  = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..');
-$includedirs = array(
-        $PROJECTLOC.'/dao',
-        $PROJECTLOC.'/extends',
-        $PROJECTLOC.'/common',
-        $PROJECTLOC.'/plugin/third/alipay',
-        $PROJECTLOC.'/plugin/third/PHPExcel',
-    );
-require_once($PROJECTLOC.'/../LffFramework/AutoLoad.php');
-CAutoLoad::AutoLoad($includedirs);
+
+
+//===========================加载自动加载==================================//
+require_once(PROJECTLOC.'/../LffFramework/AutoLoad.php');
+// CAutoLoad::AutoLoad($includedirs);
+//==========================加载自动加载================================end//
+
 
 return array(
-    'home'         => 'http://'.$HTTPHOST,
-    'mainDomain'   => 'http://'.$HTTPHOST, // http://www.aaa.me
-    'uploadDomain' => 'http://'.$HTTPHOST, // http://up.aaa.me
-    'imageDomain'  => 'http://'.$HTTPHOST, // http://img.aaa.me
-    'assetDomain'  => 'http://'.$HTTPHOST, // http://assets.aaa.me
+    'home'         => 'http://'.HTTPHOST,
+    'mainDomain'   => 'http://'.HTTPHOST, // http://www.aaa.me
+    'uploadDomain' => 'http://'.HTTPHOST, // http://up.aaa.me
+    'imageDomain'  => 'http://'.HTTPHOST, // http://img.aaa.me
+    'assetDomain'  => 'http://'.HTTPHOST, // http://assets.aaa.me
     
-    'projectLoc'   => $PROJECTLOC,
+    'projectLoc'   => PROJECTLOC,
 
     'name'=>'测试',
     'sessionid' => $sessionid,
-    'cookiedomain' => $COOKIE_DOMAIN,
-    'topdomain' => $TOP_DOMAIN,
+    'cookiedomain' => COOKIE_DOMAIN,
+    'topdomain' => TOP_DOMAIN,
     'URLMODE' => 2,
     
     // application-level parameters that can be accessed
@@ -51,9 +70,6 @@ return array(
                     ),
     
     'user' => array(
-        'mail' => 'heqmro@126.com',
-        'mailpass' => 'heqmro12345678',
-        'filecategory' => 'goods-category.dat',
     ),
     'dsArr' => array(
         'master' => array(
