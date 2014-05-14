@@ -41,25 +41,5 @@ class CController extends CCtrl {
         if($iscleanbuff)ob_clean();
         echo json_encode($var);
         if($isexit)exit(0);
-    }
-
-    //获取产品分类的文件路径
-    protected function GetFilepathCategory()
-    {
-        $tmpLoc = $this->getLoc('_data/_cache');
-        $filecategroy = $this->getUserConfig('filecategroy');
-        $filecategroy = $filecategroy ? $$filecategroy : 'goods-category.dat';
-        $fileCate = $tmpLoc.'/'.$filecategroy;
-        return $fileCate;
-    }
-    //获取产品分类的内容(json)
-    protected function GetContentCategory()
-    {
-        $fileCate = $this->GetFilepathCategory();
-        if(is_file($fileCate)){
-            return json_decode(file_get_contents($fileCate), true);
-        }
-        return false;
-    }
-    
+    }   
 };
