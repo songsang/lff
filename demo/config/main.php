@@ -13,18 +13,16 @@ ini_set('session.cookie_domain', $COOKIE_DOMAIN);
  
 $sessionid = 'primary'; // md5($CLIENTHOST.$BROWSERID.'primary');
 
-$path      = dirname(__FILE__);
-$ppath     = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..');
-$pathArr   = array(
-        $ppath.'/dao',
-        $ppath.'/extends',
-        $ppath.'/common',
-        $ppath.'/plugin/third/alipay',
+$PROJECTLOC  = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..');
+$includedirs = array(
+        $PROJECTLOC.'/dao',
+        $PROJECTLOC.'/extends',
+        $PROJECTLOC.'/common',
+        $PROJECTLOC.'/plugin/third/alipay',
+        $PROJECTLOC.'/plugin/third/PHPExcel',
     );
-
-require(dirname(__FILE__).'/../../Lff/AutoLoad.php');
-
-CAutoLoad::setAutoLoad($pathArr);
+require_once($PROJECTLOC.'/../LffFramework/AutoLoad.php');
+CAutoLoad::AutoLoad($includedirs);
 
 return array(
     'home'         => 'http://'.$HTTPHOST,
@@ -33,7 +31,7 @@ return array(
     'imageDomain'  => 'http://'.$HTTPHOST, // http://img.aaa.me
     'assetDomain'  => 'http://'.$HTTPHOST, // http://assets.aaa.me
     
-    'projectLoc'   => realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'),
+    'projectLoc'   => $PROJECTLOC,
 
     'name'=>'测试',
     'sessionid' => $sessionid,
@@ -53,13 +51,14 @@ return array(
                     ),
     
     'user' => array(
-        'mail' => 'abc@126.com',
-        'mailpass' => 'test',
+        'mail' => 'heqmro@126.com',
+        'mailpass' => 'heqmro12345678',
+        'filecategory' => 'goods-category.dat',
     ),
     'dsArr' => array(
         'master' => array(
             array(
-                'host'=>'127.0.0.1',
+                'host'=>'192.168.1.211',
                 'user'=>'root',
                 'pswd'=>'root',
                 'dbName'=>'test',
