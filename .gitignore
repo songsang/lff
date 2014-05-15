@@ -40,7 +40,7 @@ development.ini
 sitesettings.py
 config/main.php
 template_c
-dao/hqmro
+demo/dao/test/*
 templates_c
 Thumbs.db
 _upload
