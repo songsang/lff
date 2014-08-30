@@ -19,7 +19,7 @@ $configGlobalArr = require_once(dirname(__FILE__).'/../../config/main.php');
 //=========================子.公共变量=====================================//
 $sessionid          = 'primary'; // md5($CLIENTHOST.$BROWSERID.'primary');
 $INCLUDE_DIRS_SUB   = array(
-    PROJECTLOC.'/PHPExcel',
+    BOOT.'/PHPExcel',
 );
 $INCLUDE_DIRS_ALL   = array_merge($INCLUDE_DIRS_MAIN, $INCLUDE_DIRS_SUB);
 //=========================子·公共变量==================================end//
