@@ -32,7 +32,6 @@ _photos
 tags.json
 data/sessions/*
 #*.json
-static_photos
 *.log
 *.dat
 *.che
@@ -48,3 +47,5 @@ _data/_static/images/goods/*
 cache/
 _tmp/
 sh/
+*.min.js
+*.min.css
