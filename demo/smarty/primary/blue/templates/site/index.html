@@ -18,3 +18,21 @@
     <hr/>
 
 {/block}
+
+
+
+
+{block name=jsfooter append}
+<script charset="utf-8" type="text/javascript" src="{$ASSETS_URL}/common/js/underscore.js"></script>
+<script charset="utf-8" type="text/javascript" src="{$ASSETS_URL}/common/js/common.js"></script>
+{/block}
+
+{block name=jscripts}
+{literal}
+<script charset="utf-8" type="text/javascript">
+    var arr = new Array(43,66,3,45,6,4,6,5,0,2);
+    console.log(_.chain(arr).sortBy(function(num){return parseInt(num);}).without(4,5).uniq().size().value());
+    console.log(arr);
+</script>
+{/literal}
+{/block}

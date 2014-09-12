@@ -7,15 +7,14 @@
 
     {block name=metas}{/block}
 
-    {block name=jscommon}
-
-    {/block}
-
-    {block name=csscommon} {/block}
-    {block name=cssmodule} {/block}
-    {block name=csspage}   {/block}
+    {assets compress=css boot=$DATA_LOC savedir=$STATIC_LOC urlprex=$STATIC_URL enable=true}
+        {block name=csscommon} {/block}
+        {block name=cssmodule} {/block}
+        {block name=csspage}   {/block}
+    {/assets}
 
     {block name=jsglobal}
+        <script type='text/javascript' src='{$ASSETS_URL}/common/js/jquery-1.9.1.js' ></script>
     {/block}
     {block name=jsmodule} {/block}
     {block name=jspage}   {/block}
@@ -33,9 +32,10 @@
 
 {/block}
 
-{block name=jslogic}
-{/block}
-{block name=jsfooter}
-{/block}
+{block name=jsmodule}{/block}
+{assets compress=js boot=$DATA_LOC savedir=$STATIC_LOC urlprex=$STATIC_URL enable=true}
+    {block name=jsfooter}{/block}
+{/assets}
+{block name=jscripts}{/block}
 </body>
 </html>
