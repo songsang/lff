@@ -50,3 +50,6 @@ sh/
 *.min.js
 *.min.css
 gitkeek/
+rsa/*
+demo/*
+*demo.php
