@@ -2,8 +2,8 @@
 
 class KApi extends CControllerApi {
  
-    function actionDefault()
+    function actionEntry()
     {
-        echo __FILE__;
+        echo 'api';
     }
 };
